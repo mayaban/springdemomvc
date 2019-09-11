@@ -19,5 +19,11 @@ public class LoginController {
 		mv.addObject("loginObject", loginDto);
 		return mv;
 	}
+	
+	@RequestMapping(value="/login-process", method = RequestMethod.POST )
+	public String processLogin(LoginDto dto) {
+		System.out.println("login form values : " + dto.toString());
+		return "sample";
+	}
 
 }
