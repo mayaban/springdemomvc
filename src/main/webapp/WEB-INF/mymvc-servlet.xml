@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-	<bean id="driverController"
-		class="com.abc.controllers.DriverController">
+	<bean id="loginController"
+		class="com.abc.controllers.LoginController">
 	</bean>
 
 	<bean id="viewResolver"
