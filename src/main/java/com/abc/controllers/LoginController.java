@@ -6,9 +6,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.abc.dto.LoginDto;
+import com.abc.services.LoginService;
 
 @Controller
 public class LoginController {
+	
+	private LoginService loginService;
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView getDriverPage() {
@@ -21,9 +24,28 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/login-process", method = RequestMethod.POST )
-	public String processLogin(LoginDto dto) {
+	public ModelAndView processLogin(LoginDto dto) {
 		System.out.println("login form values : " + dto.toString());
-		return "sample";
+		boolean isLoginSuccessful = 
+				loginService.isLoginValid(dto.getUsername(), dto.getPassword());
+		ModelAndView mv = new ModelAndView();
+		if(isLoginSuccessful) {
+			mv.setViewName("sample");
+		} else {
+			mv.setViewName("login");
+			LoginDto loginDto = new LoginDto();
+			mv.addObject("loginObject", loginDto);
+			mv.addObject("message", "Your Login has failed. Please try again.");
+		}
+		return mv;
+	}
+
+	public LoginService getLoginService() {
+		return loginService;
+	}
+
+	public void setLoginService(LoginService loginService) {
+		this.loginService = loginService;
 	}
 
 }
