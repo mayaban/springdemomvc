@@ -5,6 +5,8 @@ public class LoginDto {
 	private String username;
 	private String password;
 
+	private String testMe;
+
 	public String getUsername() {
 		return username;
 	}
@@ -19,6 +21,14 @@ public class LoginDto {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getTestMe() {
+		return testMe;
+	}
+
+	public void setTestMe(String testMe) {
+		this.testMe = testMe;
 	}
 
 	@Override
